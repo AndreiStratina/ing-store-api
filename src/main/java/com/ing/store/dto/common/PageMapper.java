@@ -1,0 +1,20 @@
+package com.ing.store.dto.common;
+
+
+import org.springframework.data.domain.Page;
+
+public final class PageMapper {
+    private PageMapper() {}
+
+    public static <T> PageResponse<T> from(Page<T> page) {
+        return new PageResponse<>(
+                page.getContent(),
+                page.getNumber(),
+                page.getSize(),
+                page.getTotalElements(),
+                page.getTotalPages(),
+                page.isFirst(),
+                page.isLast()
+        );
+    }
+}
