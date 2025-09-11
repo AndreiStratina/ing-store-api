@@ -14,7 +14,7 @@ public class ProductFixture {
 
         product.setId(1L);
         product.setProductCode("tv_001");
-        product.setPrice(new BigDecimal(12323.10));
+        product.setPrice(new BigDecimal("12323.10"));
         product.setName("tv_asus_XL1412");
         product.setDescription("the newest TV on the market");
 
@@ -26,7 +26,7 @@ public class ProductFixture {
 
         product.setId(2L);
         product.setProductCode("tv_002");
-        product.setPrice(new BigDecimal(12323.10));
+        product.setPrice(new BigDecimal("12323.10"));
         product.setName("tv_asus_XL1412");
         product.setDescription("the newest TV on the market");
 
@@ -46,7 +46,7 @@ public class ProductFixture {
         ProductRequest productRequest = new ProductRequest();
 
         productRequest.setProductCode("tv_001");
-        productRequest.setPrice(new BigDecimal(12323.10));
+        productRequest.setPrice(new BigDecimal("12323.10"));
         productRequest.setName("tv_asus_XL1412");
         productRequest.setDescription("the newest TV on the market");
 

@@ -1,5 +1,6 @@
 package com.ing.store.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +18,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
@@ -30,11 +29,19 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        // Swagger / OpenAPI (permitAll)
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+
+
+                        // H2 & health (permitAll)
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
+
+                        // API rules
                         .requestMatchers("/api/products/*/price").hasRole("ADMIN")
-                        .requestMatchers("/api/products","/api/products/").hasAnyRole("USER","ADMIN")
-                        .requestMatchers("/api/products/*").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/api/products", "/api/products/").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/products/*").hasAnyRole("USER", "ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

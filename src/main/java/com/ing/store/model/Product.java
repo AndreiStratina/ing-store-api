@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "products", indexes = {@Index(name = "idx_products_product_code", columnList = "productCode", unique = true),
-                                     @Index(name = "idx_products_name", columnList = "name")})
+        @Index(name = "idx_products_name", columnList = "name")})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
